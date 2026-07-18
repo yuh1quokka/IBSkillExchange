@@ -1,0 +1,8 @@
+{ "indexes": [
+  { "collectionGroup": "skills", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "classId", "order": "ASCENDING" }, { "fieldPath": "isActive", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] },
+  { "collectionGroup": "bookings", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "buyerId", "order": "ASCENDING" }, { "fieldPath": "bookingTime", "order": "DESCENDING" }] },
+  { "collectionGroup": "bookings", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "sellerId", "order": "ASCENDING" }, { "fieldPath": "bookingTime", "order": "DESCENDING" }] },
+  { "collectionGroup": "histories", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "userId", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] },
+  { "collectionGroup": "users", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "classId", "order": "ASCENDING" }, { "fieldPath": "monthlyContributionKey", "order": "ASCENDING" }, { "fieldPath": "monthlyContributionCoins", "order": "DESCENDING" }] }
+  ,{ "collectionGroup": "notifications", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "userId", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] }
+] }

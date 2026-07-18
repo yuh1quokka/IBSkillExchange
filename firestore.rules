@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function own(uid) { return signedIn() && request.auth.uid == uid; }
+    function sameClass(data) { return signedIn() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.classId == data.classId; }
+    // Completion is a client Firestore transaction. Production deployments should move
+    // settlement to a trusted Cloud Function; this MVP permits classmates' balance
+    // updates so that the transaction can update buyer, seller, and histories together.
+    match /users/{uid} { allow create: if own(uid); allow read: if signedIn() && sameClass(resource.data); allow update: if signedIn() && sameClass(resource.data); }
+    match /skills/{id} { allow read: if sameClass(resource.data); allow create: if signedIn() && request.resource.data.userId == request.auth.uid && sameClass(request.resource.data); allow update: if signedIn() && sameClass(resource.data); }
+    match /requests/{id} { allow read: if sameClass(resource.data); allow create: if signedIn() && request.resource.data.userId == request.auth.uid && sameClass(request.resource.data); allow update: if signedIn() && sameClass(resource.data); }
+    match /bookings/{id} { allow read: if signedIn() && (resource.data.buyerId == request.auth.uid || resource.data.sellerId == request.auth.uid); allow create: if signedIn() && request.resource.data.buyerId == request.auth.uid && sameClass(request.resource.data); allow update: if signedIn() && resource.data.buyerId == request.auth.uid; }
+    match /histories/{id} { allow read: if signedIn() && resource.data.userId == request.auth.uid; allow create: if signedIn() && sameClass(request.resource.data); }
+    match /notifications/{id} { allow read, update: if signedIn() && resource.data.userId == request.auth.uid; allow create: if signedIn() && sameClass(request.resource.data); }
+    match /classes/{id} { allow read: if signedIn(); allow write: if false; }
+  }
+}
