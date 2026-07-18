@@ -10,6 +10,7 @@ import SkillCard from '../components/SkillCard';
 import MyCalendar from '../components/MyCalendar';
 import { listenNotifications, markNotificationRead } from '../services/notificationService';
 import { formatDate } from '../utils/helpers';
+import { User } from "lucide-react";
 
 export default function ProfilePage({ setPage }) {
 
@@ -67,8 +68,8 @@ export default function ProfilePage({ setPage }) {
       <header className="profile-head">
 
         <div className="big-avatar">
-          {profile.username?.slice(0, 1)}
-        </div>
+  <User />
+</div>
 
         <div>
           <p className="eyebrow">
