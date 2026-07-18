@@ -1,6 +1,7 @@
 import { useAuth } from '../contexts/AuthContext';
 import { useRealtime } from '../hooks/useRealtime';
 import { listenRanking } from '../services/userService';
+import { User } from 'lucide-react';
 
 export default function RankingPage() {
   const { profile } = useAuth();
@@ -30,8 +31,8 @@ export default function RankingPage() {
             </strong>
 
             <span className="avatar">
-              {user.username?.slice(0, 1)}
-            </span>
+  <User />
+</span>
 
             <b>
               {user.username}
