@@ -1,3 +1,5 @@
+import { User, House, Diamond, SquarePlus, CalendarDays } from 'lucide-react';
+
 export const CATEGORIES = [
   'Biology',
   'Chemistry',
@@ -24,9 +26,9 @@ export const CLASSES = [
 ];
 
 export const NAV_ITEMS = [
-  ['home', '⌂', 'ホーム'],
-  ['requests', '◇', 'リクエスト'],
-  ['create', '＋', '出品'],
-  ['bookings', '▣', '予約'],
-  ['profile', '☺', 'プロフィール'],
+  ['home', <House size={20} />, 'ホーム'],
+  ['requests', <Diamond size={20} />, 'リクエスト'],
+  ['create', <SquarePlus size={20} />, '出品'],
+  ['bookings', <CalendarDays size={20} />, '予約'],
+  ['profile', <User size={20} />, 'プロフィール'],
 ];
