@@ -1,5 +1,6 @@
 import { NAV_ITEMS } from '../constants/options';
 import { useBrowserNotifications } from '../hooks/useBrowserNotifications';
+import { User } from 'lucide-react';
 
 export default function Layout({
   page,
@@ -42,7 +43,11 @@ export default function Layout({
       }}
     >
 
-      <span className={item[0] === 'requests' ? 'request-nav-icon' : ''}>{item[1]}</span>
+     <span className={item[0] === 'requests' ? 'request-nav-icon' : ''}>
+  {item[0] === 'profile'
+    ? <User size={20} />
+    : item[1]}
+</span>
 
       {item[2]}{item[0] === 'profile' && unreadCount > 0 && <b className="notification-badge">{unreadCount > 9 ? '9+' : unreadCount}</b>}
 
